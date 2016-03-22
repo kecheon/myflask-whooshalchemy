@@ -176,7 +176,7 @@ def _get_analyzer(app, model):
         analyzer = app.config['WHOOSH_ANALYZER']
 
     if not analyzer:
-        analyzer = StandardAnalyzer() | NgramFilter(minsize=3, maxsize=30)
+        analyzer = StemmingAnalyzer()
 
 
     return analyzer
