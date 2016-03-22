@@ -71,9 +71,6 @@ class _QueryProxy(flask_sqlalchemy.BaseQuery):
             # Push items onto heap, where sort value is the rank provided by
             # Whoosh
 
-            heapq.heappush(ordered_by_whoosh_rank,
-                (self._whoosh_rank[unicode(getattr(row,
-                    self._primary_key_name))], row))
             if hasattr(row, self._primary_key_name):
                 heapq.headpush(ordered_by_whoosh_rank,
                                (self._whoosh_rank[unicode(getattr(row,
