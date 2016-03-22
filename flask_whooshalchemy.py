@@ -72,7 +72,7 @@ class _QueryProxy(flask_sqlalchemy.BaseQuery):
             # Whoosh
 
             if hasattr(row, self._primary_key_name):
-                heapq.headpush(ordered_by_whoosh_rank,
+                heapq.heappush(ordered_by_whoosh_rank,
                                (self._whoosh_rank[unicode(getattr(row,
                                                                   self._primary_key_name))], row))
             else:
