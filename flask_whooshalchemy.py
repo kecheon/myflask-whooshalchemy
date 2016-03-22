@@ -22,7 +22,8 @@ import sqlalchemy
 from whoosh.qparser import OrGroup
 from whoosh.qparser import AndGroup
 from whoosh.qparser import MultifieldParser
-from whoosh.analysis import StemmingAnalyzer
+from whoosh.analysis import StemmingAnalyzer, StandardAnalyzer, NgramFilter
+
 import whoosh.index
 from whoosh.fields import Schema
 #from whoosh.fields import ID, TEXT, KEYWORD, STORED
@@ -175,7 +176,8 @@ def _get_analyzer(app, model):
         analyzer = app.config['WHOOSH_ANALYZER']
 
     if not analyzer:
-        analyzer = StemmingAnalyzer()
+        analyzer = StandardAnalyzer() | NgramFilter(minsize=3, maxsize=30)
+
 
     return analyzer
 
